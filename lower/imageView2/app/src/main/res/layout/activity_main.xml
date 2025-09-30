@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="톰과 제리"
+        android:textColor="#00BCD4"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="#837C7C"
+        android:layout_weight="1"
+        tools:ignore="HardcodedText">
+    </TextView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tomnjerry"
+        android:id="@+id/image"
+        android:layout_weight="9"
+        android:background="#81341B"
+        tools:ignore="ContentDescription"
+        android:scaleType="fitXY"
+        and
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hideBtn"
+        android:text="이미지 감추기"
+        tools:ignore="HardcodedText">
+    </Button>
+
+
+</LinearLayout>
