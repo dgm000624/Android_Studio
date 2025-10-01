@@ -2,10 +2,14 @@ package com.iot.rpg;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -25,6 +29,10 @@ public class AdventureActivity extends AppCompatActivity implements getReward, p
     private FrameLayout frameLayout;
     private Map map;
     public ImageView criticalImage;
+    private ImageView select1, select2, select3;
+
+    private int select;
+    private boolean move_statement = false;
 
     @SuppressLint({"MissingInflatedId", "CutPasteId"})
     @Override
@@ -42,6 +50,9 @@ public class AdventureActivity extends AppCompatActivity implements getReward, p
         timingBar = findViewById(R.id.timingBar);
         timingButton = findViewById(R.id.timingBtn);
         criticalImage = findViewById(R.id.criticalImage);
+        select1 = findViewById(R.id.select1);
+        select2 = findViewById(R.id.select2);
+        select3 = findViewById(R.id.select3);
 
         Adventurer adventurer = new Adventurer();
         adventurer.resetAdventurer();
@@ -57,23 +68,38 @@ public class AdventureActivity extends AppCompatActivity implements getReward, p
         //setContentView(new Fight(this, adventurer, new Monster(50, 50, 100)));
 
         move.setOnClickListener(v -> {
-            frameLayout.removeAllViews();
-            Fight fight;
-            Monster monster;
-            if (stage != 0 && (stage%3) == 0) {event.adventurerHealed(adventurer);
+
+            switchButtons(true);
+            if (stage == 10) {Fight fight = new Fight(this, this, stage,  adventurer, new Monster(90, 50, 600), timingButton);
+                select = 0;
+                frameLayout.removeAllViews();
+                frameLayout.addView(fight);
+                move.setVisibility(INVISIBLE);
+                end.setVisibility(INVISIBLE);
+            }
+
+
+            if(select==2){
+                frameLayout.removeAllViews();
+                Fight fight;
+                if(stage <= 9)
+                {fight = new Fight(this, this, stage, adventurer, new Monster(20+7*stage, 10+5*stage, 80 + 25 * stage), timingButton);
+                    frameLayout.addView(fight);
+                    move.setVisibility(INVISIBLE);
+                    end.setVisibility(INVISIBLE);
+                }
+                event.EquipEvent(adventurer);
+
+            }
+            else if(select==1)
+            {
+                event.RandomEvent(adventurer);
+            }
+            else if(select==3)
+            {
+                frameLayout.removeAllViews();
+                event.adventurerHealed(adventurer);
                 frameLayout.setBackgroundResource(R.drawable.healed);
-                switchButtons(true);
-            }
-            else if(stage < 9)
-            {fight = new Fight(this, this, stage, adventurer, new Monster(20+5*stage, 10+3*stage, 80 + 20 * stage), timingButton);
-                frameLayout.addView(fight);
-                move.setVisibility(INVISIBLE);
-                end.setVisibility(INVISIBLE);
-            }
-            else if (stage == 10) {fight = new Fight(this, this, stage,  adventurer, new Monster(60, 30, 400), timingButton);
-                frameLayout.addView(fight);
-                move.setVisibility(INVISIBLE);
-                end.setVisibility(INVISIBLE);
             }
             printStats(adventurer, stats);
             printEquips(adventurer, equips);
@@ -95,17 +121,19 @@ public class AdventureActivity extends AppCompatActivity implements getReward, p
                 intent.putExtra("결과", true);
                 startActivity(intent);
             }
-
             stage++;
             frameLayout.removeAllViews();
             map = new Map(this, stage);
             frameLayout.addView(map);
             switchButtons(false);
-            event.randomEvent(adventurer);
+
 //            adventurer.getEquip(new Adventurer.Equipment(900,-10,900,"임시검"));
             printStats(adventurer, stats);
             printEquips(adventurer, equips);
             progressBar.setProgress(stage * 11);
+
+            if(stage != 10) imageSelect(select1, select2, select3, move, end);
+
         });
     }
 
@@ -184,6 +212,8 @@ public class AdventureActivity extends AppCompatActivity implements getReward, p
         printEquips(adventurer, equips);
         Toast.makeText(this, "당신은 "+ adventurer.getJob()+"으로 전직했습니다!", Toast.LENGTH_SHORT).show();
         move.setVisibility(VISIBLE);
+
+        imageSelect(select1, select2, select3, move, end);
     }
 
     @Override
@@ -218,5 +248,53 @@ public class AdventureActivity extends AppCompatActivity implements getReward, p
             return false;
         }
         return true;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void imageSelect(ImageView s1, ImageView s2, ImageView s3, Button btn1, Button btn2)
+    {
+        select = 0;
+        s1.setVisibility(VISIBLE);
+        s2.setVisibility(VISIBLE);
+        s3.setVisibility(VISIBLE);
+        btn1.setEnabled(false);
+        btn2.setEnabled(false);
+
+        s1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                select = 1;
+                btn1.setEnabled(true);
+                btn2.setEnabled(true);
+                s1.setVisibility(INVISIBLE);
+                s2.setVisibility(INVISIBLE);
+                s3.setVisibility(INVISIBLE);
+                return false;
+            }
+        });
+        s2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                select = 2;
+                btn1.setEnabled(true);
+                btn2.setEnabled(true);
+                s1.setVisibility(INVISIBLE);
+                s2.setVisibility(INVISIBLE);
+                s3.setVisibility(INVISIBLE);
+                return false;
+            }
+        });
+        s3.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                select = 3;
+                btn1.setEnabled(true);
+                btn2.setEnabled(true);
+                s1.setVisibility(INVISIBLE);
+                s2.setVisibility(INVISIBLE);
+                s3.setVisibility(INVISIBLE);
+                return false;
+            }
+        });
     }
 }

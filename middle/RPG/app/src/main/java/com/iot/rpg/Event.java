@@ -1,5 +1,9 @@
 package com.iot.rpg;
 
+import android.annotation.SuppressLint;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -28,20 +32,44 @@ public class Event {
     }
 
     //확률 기반 랜덤 이벤트. 죄다 확률이라 어느정도 실력 섞이게 바꿔야함
-    public void randomEvent(Adventurer adventurer){
+    public void EquipEvent(Adventurer adventurer){
+
+        getEuqip(adventurer);
+    }
+
+    public void RandomEvent(Adventurer adventurer){
+
         int num;
-
         num = random.nextInt(100);
-
-
-
-
-        if (num>= 100)
-        {adventurerHealed(adventurer);}
-        else{
+        if(num<=25)
+        {
+            adventurer.damaged(adventurer.getCurrHP()/2);
+        }
+        else if(num<=45)
+        {
+            adventurer.healed(adventurer.getMaxHP()/3);
+        }
+        else if(num<=70)
+        {
             getEuqip(adventurer);
         }
+        else if(num<=90)
+        {
+            adventurer.getEquip(new Adventurer.Equipment(-50, -10, -10, "저주받은 칼"));
+        }
+        else if(num<=98)
+        {
+            adventurer.getEquip(new Adventurer.Equipment(80,40,30,"이름모를 칼"));
+        }
+        else if(adventurer.getCurrHP() < adventurer.getMaxHP()/3)
+        {
+            adventurer.getEquip(new Adventurer.Equipment(999,999,999,"???"));
+        }
+        else{
+            adventurer.getEquip(new Adventurer.Equipment(777,77,77,"행운의 칼"));
+        }
     }
+
 
     // 유저 체력 회복
     public void adventurerHealed(Adventurer adventurer){
@@ -54,12 +82,12 @@ public class Event {
     private void getEuqip(Adventurer adventurer) {
         int num = random.nextInt(100);
 
-        if (num < 3)
-            adventurer.getEquip(new Adventurer.Equipment(100, 30, 10, "전설의 검"));
-        else if (num <30) {
-            adventurer.getEquip(new Adventurer.Equipment(30, 10, 2, "마법 검"));
+        if (num < 5)
+            adventurer.getEquip(new Adventurer.Equipment(120, 40, 20, "전설의 검"));
+        else if (num <40) {
+            adventurer.getEquip(new Adventurer.Equipment(30, 15, 4, "마법 검"));
         }
-        else if(num < 98){
+        else if(num < 97){
             adventurer.getEquip(new Adventurer.Equipment(10,5,1,"흔한 검"));
         }
         else{

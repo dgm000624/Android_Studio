@@ -49,6 +49,7 @@
             android:layout_height="match_parent"
             android:background="#4CAF50"
             >
+
         </FrameLayout>
         <ProgressBar
             android:id="@+id/timingBar"
@@ -81,6 +82,40 @@
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/criticalImage"
             app:layout_constraintTop_toTopOf="@+id/mainFrame" />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="200dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mainFrame"
+            android:visibility="invisible"
+            android:src="@drawable/goblin1"
+            app:layout_constraintBottom_toBottomOf="@+id/mainFrame"
+            android:id="@+id/select2"
+            />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="200dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintTop_toTopOf="@+id/mainFrame"
+            android:visibility="invisible"
+            android:src="@drawable/treasure"
+            app:layout_constraintBottom_toBottomOf="@+id/mainFrame"
+            android:id="@+id/select1"
+            />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="200dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mainFrame"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/mainFrame"
+            android:src="@drawable/healed"
+            android:id="@+id/select3"
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout

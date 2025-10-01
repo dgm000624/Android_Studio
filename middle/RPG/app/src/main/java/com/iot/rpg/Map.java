@@ -115,7 +115,7 @@ public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width,
                 if (context instanceof AdventureActivity) {
                     ((AdventureActivity) context).runOnUiThread(() -> {
                         if(((AdventureActivity) context).getFlag()) {
-                            ((AdventureActivity) context).switchButtons(false);
+//                            ((AdventureActivity) context).switchButtons(false);
                         }
                     });
                 }
