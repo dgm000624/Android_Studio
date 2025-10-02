@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+// 게임 시작 시 직업(타이밍 게임)정하기 에서 사용하는 클래스
 public class ChangeJob {
 
     getReward end;
@@ -49,11 +50,13 @@ public class ChangeJob {
         });
     }
 
+    // 타이밍 게임용 btn, progressbar 활성화
     private void toEnable(Button btn, ProgressBar bar) {
         btn.setVisibility(View.VISIBLE);
         bar.setVisibility(View.VISIBLE);
     }
 
+    // 타이밍 게임용 btn, progressbar 비활성화
     private void toDisable(Button btn, ProgressBar bar) {
         btn.setVisibility(View.INVISIBLE);
         bar.setVisibility(View.INVISIBLE);

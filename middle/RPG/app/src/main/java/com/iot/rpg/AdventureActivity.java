@@ -115,7 +115,7 @@ public class AdventureActivity extends AppCompatActivity implements getReward, p
                 intent.putExtra("결과", false);
                 startActivity(intent);
             }
-            if(stage == 10)
+            if(stage == 10 && adventurer.getCurrHP()>0)
             {
                 Intent intent = new Intent(AdventureActivity.this, Result.class);
                 intent.putExtra("결과", true);

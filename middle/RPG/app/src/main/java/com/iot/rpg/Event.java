@@ -31,25 +31,26 @@ public class Event {
         }
     }
 
-    //확률 기반 랜덤 이벤트. 죄다 확률이라 어느정도 실력 섞이게 바꿔야함
+    //전투 후 확률 기반 랜덤 장비 획득 이벤트
     public void EquipEvent(Adventurer adventurer){
 
         getEuqip(adventurer);
     }
 
+    // 랜덤 이벤트 선택시 실행되는 이벤트
     public void RandomEvent(Adventurer adventurer){
 
         int num;
         num = random.nextInt(100);
-        if(num<=25)
+        if(num<=30)
         {
             adventurer.damaged(adventurer.getCurrHP()/2);
         }
-        else if(num<=45)
+        else if(num<=55)
         {
             adventurer.healed(adventurer.getMaxHP()/3);
         }
-        else if(num<=70)
+        else if(num<=80)
         {
             getEuqip(adventurer);
         }
@@ -78,7 +79,7 @@ public class Event {
         adventurer.healed(num);
     }
 
-    // 유저 장비 획득 따로 장비를 설정해두진 않아서 여기서 별도로 선언, 추가함
+    // 유저 장비 획득 따로 장비 종류를 설정해두진 않아서 여기서 별도로 선언, 추가함
     private void getEuqip(Adventurer adventurer) {
         int num = random.nextInt(100);
 

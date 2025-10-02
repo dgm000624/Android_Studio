@@ -182,6 +182,7 @@ public class Fight extends SurfaceView implements SurfaceHolder.Callback {
         return true;
     }
 
+    //크리티컬 이미지 세팅 메서드
     private void criticaled(Context context, double multiple){
         ((AdventureActivity)context).runOnUiThread(()->
                 ((AdventureActivity) context).setCriticalImage(streng));
