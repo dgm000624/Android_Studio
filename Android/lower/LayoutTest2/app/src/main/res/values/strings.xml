@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LayoutTest2</string>
+    <string name="hello_android">Hello Android</string>
+    <string name="goood_bye">Goood bye</string>
+</resources>

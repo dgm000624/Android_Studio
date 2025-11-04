@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImageActivity"
+    android:background="@color/black"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/title"
+        android:id="@+id/image"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
+        android:hint="아이디 입력"
+        android:id="@+id/idEdit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields"
+        android:background="#9B9B9B"
+        android:layout_marginBottom="110dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
+        android:hint="비밀번호 입력"
+        android:id="@+id/passEdit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields"
+        android:background="#9B9B9B"
+        android:layout_marginBottom="50dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="로그인"
+        android:id="@+id/ImageBtn"
+        android:background="#3F000000"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="신규 등록"
+        android:id="@+id/newBtn"
+        android:background="#3F000000"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/newBtn"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="확인"
+        android:background="#3F000000"
+        android:visibility="invisible"
+        android:id="@+id/enroll"
+        tools:ignore="HardcodedText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

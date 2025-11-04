@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EditText</string>
+    <string name="message">message</string>
+    <string name="button">button</string>
+</resources>
